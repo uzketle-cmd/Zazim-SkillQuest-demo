@@ -1509,6 +1509,28 @@ header {
     background: rgba(255, 107, 53, 0.1);
 }
 
+
+
+/* Add to style.css */
+.next-button:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+}
+
+.next-button {
+    opacity: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.next-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+
 /* Verification Content */
 .verification-content {
     text-align: center;

@@ -527,11 +527,12 @@ class QuizUI {
         `;
     }
     
-    // Render question
+  // quiz-ui.js - Fixed renderQuestion method
     renderQuestion(questionData) {
         const letters = ['A', 'B', 'C', 'D'];
         
-        return `
+        // Store the HTML string in a variable first
+        const quizHTML = `
             <div class="question-container">
                 <div class="question-meta">
                     <div class="meta-item">
@@ -566,13 +567,15 @@ class QuizUI {
                 </div>
             </div>
         `;
+        
+        return quizHTML;
     }
     
     // Render next button
     renderNextButton(isLastQuestion = false) {
         return `
             <div class="next-button-container">
-                <button class="next-button" id="nextQuestionBtn" disabled style="opacity: 0.5; cursor: not-allowed;">
+                <button class="next-button" id="nextQuestionBtn" disabled>
                     <i class="fas fa-arrow-right"></i>
                     ${isLastQuestion ? 'View Results' : 'Next Question'}
                 </button>
@@ -796,6 +799,9 @@ class QuizUI {
         const nextButton = this.quizContainer?.querySelector('#nextQuestionBtn');
         if (nextButton) {
             nextButton.disabled = false;
+            nextButton.style.opacity = '1';
+            nextButton.style.cursor = 'pointer';
+            nextButton.classList.remove('disabled');
         }
     }
     
