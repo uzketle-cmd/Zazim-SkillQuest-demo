@@ -623,6 +623,17 @@ class QuizUI {
             </div>
         `;
     }
+
+    // Add this method to the QuizUI class
+    enableNextButton() {
+        const nextButton = this.quizContainer?.querySelector('#nextQuestionBtn');
+        if (nextButton) {
+            nextButton.disabled = false;
+            nextButton.style.opacity = '1';
+            nextButton.style.cursor = 'pointer';
+            nextButton.classList.remove('disabled');
+        }
+    }
     
     // Render results
     renderResults(results) {
