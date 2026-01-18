@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zazim SkillQuest | AI-Powered Compliance Training</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    Zazim SkillQuest
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#industries">Industries</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="openLoginModal()">Log In</button>
+                    <button class="btn btn-primary" onclick="openSignupModal()">Get Started</button>
+                </div>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-mobile-menu" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="#features" onclick="toggleMobileMenu()">Features</a></li>
+            <li><a href="#how-it-works" onclick="toggleMobileMenu()">How It Works</a></li>
+            <li><a href="#industries" onclick="toggleMobileMenu()">Industries</a></li>
+            <li><a href="#demo" onclick="toggleMobileMenu()">Demo</a></li>
+            <li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
+            <li><button class="btn btn-primary" onclick="openSignupModal(); toggleMobileMenu()">Get Started</button></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Transform Compliance Training with AI-Powered Microlearning</h1>
+                    <p>Zazim SkillQuest delivers engaging, 5-10 minute training modules that boost retention by 50% and completion rates to 85%. Designed for high-turnover UK industries.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="openSignupModal()">
+                            <i class="fas fa-rocket"></i> Start Free Trial
+                        </button>
+                        <button class="btn btn-outline" onclick="scrollToDemo()">
+                            <i class="fas fa-play-circle"></i> View Demo
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-value">85%</div>
+                            <div class="stat-label">Completion Rate</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">50%</div>
+                            <div class="stat-label">Higher Retention</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">5-10</div>
+                            <div class="stat-label">Minute Modules</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">24/7</div>
+                            <div class="stat-label">Mobile Access</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="dashboard-preview">
+                        <div class="dashboard-header">
+                            <div class="user-info">
+                                <div class="user-avatar">JO</div>
+                                <div>
+                                    <h4>John Operative</h4>
+                                    <p>Manufacturing Sector</p>
+                                </div>
+                            </div>
+                            <div class="points-display">
+                                <i class="fas fa-trophy"></i>
+                                <span>850 Points</span>
+                            </div>
+                        </div>
+                        <div class="module-cards">
+                            <div class="module-card">
+                                <div class="module-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="module-info">
+                                    <h4>Health & Safety</h4>
+                                    <p>8 min module</p>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="module-info">
+                                    <h4>GDPR Compliance</h4>
+                                    <p>6 min module</p>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 30%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-icon">
+                                    <i class="fas fa-fire-extinguisher"></i>
+                                </div>
+                                <div class="module-info">
+                                    <h4>Fire Safety</h4>
+                                    <p>10 min module</p>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <i class="fas fa-bell"></i>
+                            <span>New badge earned: "Safety First"</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Zazim SkillQuest Works</h2>
+                <p>Our platform combines cutting-edge AI with proven learning science to deliver compliance training that actually works.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI Adaptive Learning</h3>
+                    <p>Our algorithm personalizes content based on learner performance, ensuring optimal knowledge retention.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Gamification</h3>
+                    <p>Points, badges, and leaderboards transform mandatory training into an engaging experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Real-Time Dashboards</h3>
+                    <p>Managers get live compliance tracking and audit-ready reports at a glance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile-First Design</h3>
+                    <p>Access training anytime, anywhere on any device. Works offline for shift workers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Predictive Analytics</h3>
+                    <p>Identify at-risk compliance areas before they become problems with our AI insights.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Multi-Tenant Architecture</h3>
+                    <p>Scale from small teams to enterprise-wide deployment with secure separation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="industries" id="industries">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trusted by UK Industries</h2>
+                <p>Designed specifically for high-turnover, regulated sectors across the UK.</p>
+            </div>
+            <div class="industries-grid">
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Manufacturing</h3>
+                    <p>Health & Safety, COSHH, Machine Safety</p>
+                    <div class="industry-stats">
+                        <span><i class="fas fa-user-clock"></i> 40% annual retraining</span>
+                    </div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Health & Social Care</h3>
+                    <p>Safeguarding, Manual Handling, CQC Standards</p>
+                    <div class="industry-stats">
+                        <span><i class="fas fa-user-clock"></i> 50% annual retraining</span>
+                    </div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Logistics & Warehousing</h3>
+                    <p>Forklift Safety, GDPR, Fire Safety</p>
+                    <div class="industry-stats">
+                        <span><i class="fas fa-user-clock"></i> 35% annual retraining</span>
+                    </div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Retail & Hospitality</h3>
+                    <p>Food Safety, Alcohol Licensing, Customer Service</p>
+                    <div class="industry-stats">
+                        <span><i class="fas fa-user-clock"></i> 45% annual retraining</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Demos Section -->
+    <section class="games-section" id="demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Interactive Learning Demos</h2>
+                <p>Experience our gamified microlearning approach with these sample modules.</p>
+            </div>
+            <div class="games-container">
+                <!-- Quiz Game Demo -->
+                <div class="game-demo">
+                    <div class="game-header">
+                        <h3><i class="fas fa-question-circle"></i> Fire Safety Quiz</h3>
+                        <div class="points">+50 points</div>
+                    </div>
+                    <div class="game-body">
+                        <div class="quiz-container" id="quiz1">
+                            <div class="quiz-question" id="question1">
+                                What should you do if you discover a fire in the workplace?
+                            </div>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" onclick="selectAnswer(this, 1, 2)">A) Try to extinguish it yourself</li>
+                                <li class="quiz-option" onclick="selectAnswer(this, 2, 2)">B) Sound the alarm and evacuate immediately</li>
+                                <li class="quiz-option" onclick="selectAnswer(this, 3, 2)">C) Finish your current task first</li>
+                                <li class="quiz-option" onclick="selectAnswer(this, 4, 2)">D) Wait for instructions from a manager</li>
+                            </ul>
+                            <button class="btn btn-primary" onclick="checkAnswer(1)" style="width: 100%; margin-top: 20px;">
+                                Submit Answer
+                            </button>
+                        </div>
+                        <div class="quiz-result" id="result1">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Correct! +50 Points</h3>
+                            <p>You've earned the "Safety First" badge!</p>
+                            <div class="badge-earned">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Safety First Badge</span>
+                            </div>
+                            <button class="btn btn-outline" onclick="resetQuiz(1)">
+                                Try Next Question
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scenario Game Demo -->
+                <div class="game-demo">
+                    <div class="game-header">
+                        <h3><i class="fas fa-scroll"></i> GDPR Scenario</h3>
+                        <div class="points">+75 points</div>
+                    </div>
+                    <div class="game-body">
+                        <div class="quiz-container" id="quiz2">
+                            <div class="quiz-question" id="question2">
+                                A customer asks for a copy of all personal data you hold about them. How should you respond?
+                            </div>
+                            <ul class="quiz-options">
+                                <li class="quiz-option" onclick="selectAnswer(this, 5, 6)">A) Provide it verbally over the phone</li>
+                                <li class="quiz-option" onclick="selectAnswer(this, 6, 6)">B) Ask them to submit a formal Subject Access Request</li>
+                                <li class="quiz-option" onclick="selectAnswer(this, 7, 6)">C) Send it by unencrypted email for speed</li>
+                                <li class="quiz-option" onclick="selectAnswer(this, 8, 6)">D) Tell them you don't have that information</li>
+                            </ul>
+                            <button class="btn btn-primary" onclick="checkAnswer(2)" style="width: 100%; margin-top: 20px;">
+                                Submit Answer
+                            </button>
+                        </div>
+                        <div class="quiz-result" id="result2">
+                            <i class="fas fa-medal"></i>
+                            <h3>Well Done! +75 Points</h3>
+                            <p>You've mastered GDPR compliance basics!</p>
+                            <div class="badge-earned">
+                                <i class="fas fa-database"></i>
+                                <span>Data Guardian Badge</span>
+                            </div>
+                            <button class="btn btn-outline" onclick="resetQuiz(2)">
+                                Next Challenge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar Game -->
+                <div class="game-demo">
+                    <div class="game-header">
+                        <h3><i class="fas fa-chart-bar"></i> Progress Challenge</h3>
+                        <div class="points">Streak: 5 days</div>
+                    </div>
+                    <div class="game-body">
+                        <div class="progress-challenge">
+                            <h4>Complete Your Daily Training</h4>
+                            <p>Maintain your streak by completing today's module</p>
+                            <div class="streak-display">
+                                <div class="streak-day active"><span>M</span></div>
+                                <div class="streak-day active"><span>T</span></div>
+                                <div class="streak-day active"><span>W</span></div>
+                                <div class="streak-day active"><span>T</span></div>
+                                <div class="streak-day active"><span>F</span></div>
+                                <div class="streak-day"><span>S</span></div>
+                                <div class="streak-day"><span>S</span></div>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-info">
+                                    <span>Today's Progress</span>
+                                    <span id="progressPercent">0%</span>
+                                </div>
+                                <div class="progress-bar-large">
+                                    <div class="progress-fill-large" id="progressFill"></div>
+                                </div>
+                            </div>
+                            <button class="btn btn-accent" onclick="simulateProgress()" style="width: 100%; margin-top: 20px;">
+                                <i class="fas fa-play"></i> Start Today's Module
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRL Section -->
+    <section class="trl-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technology Readiness Level (TRL 5)</h2>
+                <p>Zazim SkillQuest is validated in relevant environments with real user testing</p>
+            </div>
+            <div class="trl-container">
+                <div class="trl-progress">
+                    <div class="trl-stage completed">TRL 1-3<br>Concept</div>
+                    <div class="trl-stage completed">TRL 4<br>Lab Test</div>
+                    <div class="trl-stage current">TRL 5<br>Validated</div>
+                    <div class="trl-stage">TRL 6<br>Demo</div>
+                    <div class="trl-stage">TRL 7-9<br>Commercial</div>
+                </div>
+                <div class="trl-info">
+                    <h3>Current Status: TRL 5 Achieved</h3>
+                    <p><strong>Evidence:</strong> Functional prototype tested with 8+ UK workers across target industries. User feedback validates core assumptions and interface design.</p>
+                    <div class="trl-evidence">
+                        <div class="evidence-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Clickable prototype developed</span>
+                        </div>
+                        <div class="evidence-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>User testing completed</span>
+                        </div>
+                        <div class="evidence-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Market validation through surveys</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login/Signup Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Welcome to Zazim SkillQuest</h3>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-container">
+                    <button class="tab active" onclick="switchTab('login')">Log In</button>
+                    <button class="tab" onclick="switchTab('signup')">Sign Up</button>
+                    <button class="tab" onclick="switchTab('demo')">Demo Access</button>
+                </div>
+                
+                <div class="tab-content active" id="loginTab">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="you@yourcompany.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox">
+                                <input type="checkbox" checked>
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-sign-in-alt"></i> Log In
+                        </button>
+                    </form>
+                    <div class="demo-note">
+                        <p><i class="fas fa-info-circle"></i> Demo access available</p>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="signupTab">
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="signupName">Full Name</label>
+                            <input type="text" class="form-control" id="signupName" placeholder="John Operative" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Work Email</label>
+                            <input type="email" class="form-control" id="signupEmail" placeholder="you@yourcompany.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupCompany">Company</label>
+                            <input type="text" class="form-control" id="signupCompany" placeholder="Your Company Ltd" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupIndustry">Industry</label>
+                            <select class="form-control" id="signupIndustry" required>
+                                <option value="">Select your industry</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="care">Health & Social Care</option>
+                                <option value="retail">Retail</option>
+                                <option value="logistics">Logistics & Warehousing</option>
+                                <option value="hospitality">Hospitality</option>
+                                <option value="construction">Construction</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmployees">Number of Employees</label>
+                            <select class="form-control" id="signupEmployees" required>
+                                <option value="">Select size</option>
+                                <option value="1-10">1-10</option>
+                                <option value="11-50">11-50</option>
+                                <option value="51-250">51-250</option>
+                                <option value="251+">251+</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                            <i class="fas fa-user-plus"></i> Start 14-Day Free Trial
+                        </button>
+                    </form>
+                    <div class="form-footer">
+                        <p>No credit card required • Full access to all features</p>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="demoTab">
+                    <div class="demo-access">
+                        <div class="demo-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h4>Instant Demo Access</h4>
+                        <p>Experience Zazim SkillQuest immediately with our interactive demo account.</p>
+                        <div class="demo-credentials">
+                            <div class="credential">
+                                <strong>Email:</strong> demo@zazimskillquest.com
+                            </div>
+                            <div class="credential">
+                                <strong>Password:</strong> Demo2026!
+                            </div>
+                        </div>
+                        <button class="btn btn-accent" onclick="useDemoCredentials()" style="width: 100%; margin-top: 20px;">
+                            <i class="fas fa-play"></i> Launch Demo Dashboard
+                        </button>
+                        <p class="demo-note-small">This will open a simulated dashboard experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page (Hidden by default) -->
+    <div id="dashboardPage" style="display: none;">
+        <div class="dashboard-container">
+            <div class="sidebar">
+                <div class="logo" style="padding: 0 25px 30px;">
+                    <i class="fas fa-graduation-cap"></i>
+                    Zazim SkillQuest
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" onclick="switchDashboardTab('home')"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#" onclick="switchDashboardTab('learning')"><i class="fas fa-book-open"></i> My Learning</a></li>
+                    <li><a href="#" onclick="switchDashboardTab('achievements')"><i class="fas fa-trophy"></i> Achievements</a></li>
+                    <li><a href="#" onclick="switchDashboardTab('progress')"><i class="fas fa-chart-line"></i> Progress</a></li>
+                    <li><a href="#" onclick="switchDashboardTab('certificates')"><i class="fas fa-certificate"></i> Certificates</a></li>
+                    <li><a href="#" onclick="switchDashboardTab('team')"><i class="fas fa-users"></i> Team View</a></li>
+                    <li><a href="#" onclick="switchDashboardTab('settings')"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="#" onclick="returnToHome()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <div class="user-mini">
+                        <div class="user-avatar-mini">JO</div>
+                        <div>
+                            <div class="user-name-mini">John Operative</div>
+                            <div class="user-role-mini">Manufacturing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-content">
+                <!-- Dashboard Home Tab -->
+                <div class="dashboard-tab active" id="dashboardHome">
+                    <div class="dashboard-header-large">
+                        <div class="welcome-message">
+                            <h1>Welcome back, <span id="userName">John</span>!</h1>
+                            <p>You have 3 modules to complete this week. Keep up the great work!</p>
+                        </div>
+                        <div class="user-stats">
+                            <div class="badge-display">
+                                <i class="fas fa-medal"></i>
+                                <span>Level 5 • <span id="userPoints">1,250</span> Points</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>12</h3>
+                            <p>Modules Completed</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-clock"></i>
+                            <h3>5.8</h3>
+                            <p>Avg. Minutes/Module</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-percentage"></i>
+                            <h3>94%</h3>
+                            <p>Retention Score</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3 id="streakCount">42</h3>
+                            <p>Day Streak</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-section">
+                        <div class="section-header">
+                            <h2>Continue Your Learning</h2>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="module-cards-large">
+                            <div class="module-card-large">
+                                <div class="module-icon-large">
+                                    <i class="fas fa-boxes"></i>
+                                </div>
+                                <div class="module-content">
+                                    <h4>Manual Handling Safety</h4>
+                                    <p>Learn proper lifting techniques to prevent workplace injuries.</p>
+                                    <div class="module-meta">
+                                        <span><i class="far fa-clock"></i> 7 minutes</span>
+                                        <span><i class="fas fa-star"></i> Intermediate</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 40%"></div>
+                                    </div>
+                                    <button class="btn btn-accent" onclick="startModule('manual-handling')">
+                                        Continue
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="module-card-large">
+                                <div class="module-icon-large">
+                                    <i class="fas fa-shield-virus"></i>
+                                </div>
+                                <div class="module-content">
+                                    <h4>Cybersecurity Awareness</h4>
+                                    <p>Protect company data from phishing and malware attacks.</p>
+                                    <div class="module-meta">
+                                        <span><i class="far fa-clock"></i> 9 minutes</span>
+                                        <span><i class="fas fa-star"></i> Beginner</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 0%"></div>
+                                    </div>
+                                    <button class="btn btn-secondary" onclick="startModule('cybersecurity')">
+                                        Start
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-section">
+                        <div class="section-header">
+                            <h2>Recent Achievements</h2>
+                        </div>
+                        <div class="achievements-grid">
+                            <div class="achievement-card">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Safety First</h4>
+                                    <p>Completed 5 safety modules</p>
+                                    <span class="achievement-date">Earned: Today</span>
+                                </div>
+                            </div>
+                            <div class="achievement-card">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div>
+                                    <h4>Quick Learner</h4>
+                                    <p>Average completion time < 6min</p>
+                                    <span class="achievement-date">Earned: 2 days ago</span>
+                                </div>
+                            </div>
+                            <div class="achievement-card">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <div>
+                                    <h4>30-Day Streak</h4>
+                                    <p>Consistent learning for 30 days</p>
+                                    <span class="achievement-date">Earned: 1 week ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Dashboard Tabs (initially hidden) -->
+                <div class="dashboard-tab" id="dashboardLearning">
+                    <div class="tab-header">
+                        <h2>My Learning Path</h2>
+                    </div>
+                    <div class="learning-path">
+                        <p>Learning path content would appear here...</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-tab" id="dashboardAchievements">
+                    <div class="tab-header">
+                        <h2>My Achievements</h2>
+                    </div>
+                    <div class="achievements-full">
+                        <p>Achievements gallery would appear here...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Ready to Transform Your Compliance Training?</h2>
+                    <p>Join UK businesses already using Zazim SkillQuest to improve engagement, retention, and audit readiness.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>contact@zazimskillquest.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+44 (0)20 7123 4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>UK Office</h4>
+                                <p>London, United Kingdom</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Request a Demo</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Work Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Company Name" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="">Industry</option>
+                                <option>Manufacturing</option>
+                                <option>Health & Social Care</option>
+                                <option>Retail</option>
+                                <option>Logistics</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-calendar-alt"></i> Schedule Demo
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        Zazim SkillQuest
+                    </div>
+                    <p>AI-powered microlearning for UK compliance training.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Updates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Industries</h4>
+                    <ul>
+                        <li><a href="#industries">Manufacturing</a></li>
+                        <li><a href="#industries">Health & Care</a></li>
+                        <li><a href="#industries">Logistics</a></li>
+                        <li><a href="#industries">Retail</a></li>
+                        <li><a href="#industries">Hospitality</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR Compliance</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Zazim SkillQuest Ltd. All rights reserved.</p>
+                <p>UK Innovator Founder Visa Endorsement - UKES-5298 | TRL 5 Validated</p>
+                <p class="footer-note">This is a demonstration website for Innovator Founder Visa application purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
