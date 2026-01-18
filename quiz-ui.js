@@ -572,7 +572,7 @@ class QuizUI {
     renderNextButton(isLastQuestion = false) {
         return `
             <div class="next-button-container">
-                <button class="next-button" id="nextQuestionBtn" disabled>
+                <button class="next-button" id="nextQuestionBtn" disabled style="opacity: 0.5; cursor: not-allowed;">
                     <i class="fas fa-arrow-right"></i>
                     ${isLastQuestion ? 'View Results' : 'Next Question'}
                 </button>
