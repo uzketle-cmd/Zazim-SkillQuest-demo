@@ -1352,37 +1352,32 @@ async function startQuiz(moduleId) {
     }
 }
 
-// Render a question
+
 function renderQuestion(questionData) {
     if (!quizModal || !questionData) return;
     
     const moduleName = questionData.category.replace('-', ' ').toUpperCase();
     const progress = ((questionData.questionNumber - 1) / questionData.totalQuestions) * 100;
     
-    // Build quiz UI
+    // Build quiz UI with new structure
     quizModal.innerHTML = `
-        <div class="modal-content" style="max-width: 900px;">
-            <div class="modal-header">
-                <h3>${moduleName} Training Quiz</h3>
-                <button class="close-modal" onclick="closeQuiz()">&times;</button>
-            </div>
-            <div class="modal-body" id="quizBody">
-                ${quizUI.renderQuizHeader(
-                    moduleName,
-                    questionData.score || 0,
-                    questionData.streak || 0,
-                    questionData.questionNumber,
-                    questionData.totalQuestions
-                )}
-                ${quizUI.renderProgressBar(progress)}
+        <div class="modal-content">
+            ${quizUI.renderQuizHeader(
+                moduleName,
+                questionData.streak || 0,
+                questionData.score || 0,
+                questionData.questionNumber,
+                questionData.totalQuestions
+            )}
+            ${quizUI.renderProgressBar(progress)}
+            
+            <div class="quiz-body-scrollable">
                 ${quizUI.renderQuestion(questionData)}
-                ${quizUI.renderNextButton(questionData.questionNumber === questionData.totalQuestions)}
             </div>
+            
+            ${quizUI.renderNextButton(questionData.questionNumber === questionData.totalQuestions)}
         </div>
     `;
-    
-    // IMPORTANT: Set the quizContainer for QuizUI
-    quizUI.quizContainer = quizModal.querySelector('.modal-content');
     
     // Add event listeners AFTER the HTML is in the DOM
     setTimeout(() => {

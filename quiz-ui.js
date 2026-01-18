@@ -30,30 +30,54 @@ class QuizUI {
         const style = document.createElement('style');
         style.id = 'quiz-ui-styles';
         style.textContent = `
-            /* Quiz Container */
-            .quiz-container {
-                max-width: 800px;
-                margin: 0 auto;
-                background: white;
-                border-radius: 20px;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            /* Full Screen Quiz Modal */
+            #quizModal.modal {
+                display: flex;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.85);
+                z-index: 9999;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
                 overflow: hidden;
-                animation: fadeIn 0.5s ease;
+                animation: modalFadeIn 0.3s ease;
             }
             
-            /* Quiz Header */
+            /* Quiz Modal Content */
+            #quizModal .modal-content {
+                width: 100%;
+                max-width: 900px;
+                height: 95vh;
+                max-height: 95vh;
+                background: white;
+                border-radius: 20px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                animation: slideUp 0.4s ease;
+            }
+            
+            /* Quiz Header - Fixed */
             .quiz-header {
                 background: linear-gradient(135deg, #2A4B8C 0%, #4CAF50 100%);
                 color: white;
-                padding: 25px 30px;
+                padding: 20px 30px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                flex-shrink: 0;
+                position: relative;
+                z-index: 10;
             }
             
             .quiz-header h2 {
                 margin: 0;
-                font-size: 1.8rem;
+                font-size: 1.5rem;
                 display: flex;
                 align-items: center;
                 gap: 10px;
@@ -61,47 +85,48 @@ class QuizUI {
             
             .quiz-stats {
                 display: flex;
-                gap: 20px;
+                gap: 15px;
             }
             
             .stat-box {
                 text-align: center;
                 background: rgba(255,255,255,0.2);
-                padding: 10px 15px;
-                border-radius: 10px;
-                min-width: 80px;
+                padding: 8px 12px;
+                border-radius: 8px;
+                min-width: 70px;
             }
             
             .stat-value {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
                 font-weight: bold;
                 display: block;
             }
             
             .stat-label {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
                 opacity: 0.9;
             }
             
             /* Progress Bar */
             .quiz-progress {
-                padding: 20px 30px;
+                padding: 15px 30px;
                 background: #f8f9fa;
                 border-bottom: 1px solid #e9ecef;
+                flex-shrink: 0;
             }
             
             .progress-bar-container {
-                height: 10px;
+                height: 8px;
                 background: #e9ecef;
-                border-radius: 5px;
+                border-radius: 4px;
                 overflow: hidden;
-                margin-bottom: 10px;
+                margin-bottom: 8px;
             }
             
             .progress-fill {
                 height: 100%;
                 background: linear-gradient(90deg, #4CAF50, #8BC34A);
-                border-radius: 5px;
+                border-radius: 4px;
                 transition: width 0.5s ease;
                 width: 0%;
             }
@@ -109,17 +134,29 @@ class QuizUI {
             .progress-text {
                 display: flex;
                 justify-content: space-between;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 color: #666;
+            }
+            
+            /* Scrollable Quiz Content */
+            .quiz-body-scrollable {
+                flex: 1;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
             }
             
             /* Question Container */
             .question-container {
-                padding: 30px;
+                padding: 25px 30px;
+                flex: 1;
+                min-height: 0;
             }
             
             .question-text {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
                 margin-bottom: 25px;
                 color: #333;
                 line-height: 1.5;
@@ -130,7 +167,7 @@ class QuizUI {
                 gap: 15px;
                 margin-bottom: 20px;
                 color: #666;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
             .meta-item {
@@ -143,20 +180,24 @@ class QuizUI {
             .options-container {
                 display: flex;
                 flex-direction: column;
-                gap: 12px;
+                gap: 10px;
+                margin-bottom: 20px;
             }
             
             .option-button {
-                padding: 18px 20px;
+                padding: 16px 20px;
                 background: #f8f9fa;
                 border: 2px solid #e9ecef;
                 border-radius: 12px;
-                font-size: 1.1rem;
+                font-size: 1rem;
                 text-align: left;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 position: relative;
                 overflow: hidden;
+                min-height: 60px;
+                display: flex;
+                align-items: center;
             }
             
             .option-button:hover:not(:disabled) {
@@ -188,7 +229,9 @@ class QuizUI {
             }
             
             .option-letter {
-                display: inline-block;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
                 width: 30px;
                 height: 30px;
                 background: #2A4B8C;
@@ -198,11 +241,16 @@ class QuizUI {
                 line-height: 30px;
                 font-weight: bold;
                 margin-right: 15px;
+                flex-shrink: 0;
+            }
+            
+            .option-text {
+                flex: 1;
             }
             
             /* Explanation Container */
             .explanation-container {
-                margin-top: 25px;
+                margin: 20px 0;
                 padding: 20px;
                 background: #f8f9fa;
                 border-radius: 12px;
@@ -227,7 +275,7 @@ class QuizUI {
             }
             
             .explanation-text {
-                font-size: 1.1rem;
+                font-size: 1.05rem;
                 line-height: 1.6;
                 margin-bottom: 15px;
                 color: #333;
@@ -261,15 +309,21 @@ class QuizUI {
                 margin-bottom: 0;
             }
             
-            /* Next Button */
+            /* Next Button - Fixed at bottom */
             .next-button-container {
                 padding: 20px 30px;
-                text-align: center;
+                background: white;
                 border-top: 1px solid #e9ecef;
+                text-align: center;
+                flex-shrink: 0;
+                position: sticky;
+                bottom: 0;
+                z-index: 5;
+                box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
             }
             
             .next-button {
-                padding: 15px 40px;
+                padding: 14px 35px;
                 font-size: 1.1rem;
                 border-radius: 25px;
                 background: linear-gradient(135deg, #2A4B8C, #4CAF50);
@@ -281,6 +335,7 @@ class QuizUI {
                 display: inline-flex;
                 align-items: center;
                 gap: 10px;
+                min-width: 180px;
             }
             
             .next-button:hover:not(:disabled) {
@@ -291,50 +346,53 @@ class QuizUI {
             .next-button:disabled {
                 opacity: 0.5;
                 cursor: not-allowed;
+                background: #cccccc;
             }
             
             /* Results Container */
             .results-container {
-                padding: 40px;
+                padding: 30px;
                 text-align: center;
                 animation: fadeIn 0.8s ease;
+                overflow-y: auto;
+                max-height: calc(95vh - 160px);
             }
             
             .results-header {
-                margin-bottom: 30px;
+                margin-bottom: 25px;
             }
             
             .results-score {
-                font-size: 4rem;
+                font-size: 3.5rem;
                 font-weight: bold;
                 background: linear-gradient(135deg, #2A4B8C, #4CAF50);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                margin: 20px 0;
+                margin: 15px 0;
             }
             
             .results-message {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
                 color: #333;
-                margin-bottom: 30px;
+                margin-bottom: 25px;
             }
             
             .results-details {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-                margin: 30px 0;
+                gap: 15px;
+                margin: 25px 0;
             }
             
             .detail-card {
                 background: #f8f9fa;
-                padding: 20px;
+                padding: 18px;
                 border-radius: 12px;
                 text-align: center;
             }
             
             .detail-value {
-                font-size: 2rem;
+                font-size: 1.8rem;
                 font-weight: bold;
                 color: #2A4B8C;
                 display: block;
@@ -342,12 +400,12 @@ class QuizUI {
             
             .detail-label {
                 color: #666;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 margin-top: 5px;
             }
             
             .achievements-container {
-                margin: 30px 0;
+                margin: 25px 0;
             }
             
             .achievement-badge {
@@ -355,30 +413,36 @@ class QuizUI {
                 align-items: center;
                 gap: 10px;
                 background: #fff3cd;
-                padding: 10px 20px;
+                padding: 10px 18px;
                 border-radius: 25px;
                 margin: 5px;
                 border: 2px solid #ffc107;
+                font-size: 0.9rem;
             }
             
             .certificate-container {
-                margin: 40px 0;
-                padding: 30px;
+                margin: 30px 0;
+                padding: 25px;
                 background: linear-gradient(135deg, #f8f9fa, #e9ecef);
                 border-radius: 15px;
                 border: 2px dashed #2A4B8C;
             }
             
             .certificate-title {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
                 color: #2A4B8C;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             
             /* Animations */
             @keyframes fadeIn {
                 from { opacity: 0; }
                 to { opacity: 1; }
+            }
+            
+            @keyframes slideUp {
+                from { transform: translateY(30px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
             }
             
             @keyframes slideIn {
@@ -415,7 +479,7 @@ class QuizUI {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                z-index: 9999;
+                z-index: 10000;
             }
             
             .loading-content {
@@ -449,29 +513,148 @@ class QuizUI {
                 100% { transform: rotate(360deg); }
             }
             
-            /* Responsive */
+            /* Scrollbar Styling */
+            .quiz-body-scrollable::-webkit-scrollbar {
+                width: 8px;
+            }
+            
+            .quiz-body-scrollable::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
+            
+            .quiz-body-scrollable::-webkit-scrollbar-thumb {
+                background: #c1c1c1;
+                border-radius: 4px;
+            }
+            
+            .quiz-body-scrollable::-webkit-scrollbar-thumb:hover {
+                background: #a8a8a8;
+            }
+            
+            /* Responsive Design */
             @media (max-width: 768px) {
+                #quizModal.modal {
+                    padding: 10px;
+                }
+                
+                #quizModal .modal-content {
+                    height: 98vh;
+                    max-height: 98vh;
+                    border-radius: 15px;
+                }
+                
                 .quiz-header {
+                    padding: 15px 20px;
                     flex-direction: column;
                     gap: 15px;
-                    text-align: center;
                 }
                 
                 .quiz-stats {
                     width: 100%;
-                    justify-content: center;
+                    justify-content: space-between;
                 }
                 
-                .results-details {
-                    grid-template-columns: 1fr;
+                .stat-box {
+                    flex: 1;
+                    min-width: auto;
+                    padding: 8px 10px;
+                }
+                
+                .question-container {
+                    padding: 20px;
                 }
                 
                 .question-text {
                     font-size: 1.2rem;
                 }
                 
+                .question-meta {
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
                 .option-button {
+                    padding: 14px 16px;
+                    min-height: 55px;
+                }
+                
+                .next-button {
+                    padding: 12px 25px;
+                    width: 100%;
+                    min-width: auto;
+                }
+                
+                .results-details {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                }
+                
+                .detail-card {
                     padding: 15px;
+                }
+                
+                .detail-value {
+                    font-size: 1.6rem;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                .quiz-header h2 {
+                    font-size: 1.3rem;
+                }
+                
+                .question-text {
+                    font-size: 1.1rem;
+                }
+                
+                .option-button {
+                    font-size: 0.95rem;
+                }
+                
+                .option-letter {
+                    width: 26px;
+                    height: 26px;
+                    font-size: 0.9rem;
+                    margin-right: 12px;
+                }
+                
+                .explanation-text {
+                    font-size: 1rem;
+                }
+                
+                .results-score {
+                    font-size: 3rem;
+                }
+            }
+            
+            /* Mobile Landscape Optimization */
+            @media (max-height: 600px) and (orientation: landscape) {
+                #quizModal .modal-content {
+                    height: 98vh;
+                    max-height: 98vh;
+                }
+                
+                .quiz-header {
+                    padding: 12px 20px;
+                }
+                
+                .question-container {
+                    padding: 15px 20px;
+                }
+                
+                .question-text {
+                    font-size: 1.1rem;
+                    margin-bottom: 15px;
+                }
+                
+                .option-button {
+                    padding: 12px 16px;
+                    min-height: 50px;
+                }
+                
+                .next-button-container {
+                    padding: 15px 20px;
                 }
             }
         `;
@@ -527,12 +710,11 @@ class QuizUI {
         `;
     }
     
-  // quiz-ui.js - Fixed renderQuestion method
+    // Render question
     renderQuestion(questionData) {
         const letters = ['A', 'B', 'C', 'D'];
         
-        // Store the HTML string in a variable first
-        const quizHTML = `
+        return `
             <div class="question-container">
                 <div class="question-meta">
                     <div class="meta-item">
@@ -557,7 +739,7 @@ class QuizUI {
                     ${questionData.options.map((option, index) => `
                         <button class="option-button" data-index="${index}">
                             <span class="option-letter">${letters[index]}</span>
-                            ${option}
+                            <span class="option-text">${option}</span>
                         </button>
                     `).join('')}
                 </div>
@@ -567,8 +749,6 @@ class QuizUI {
                 </div>
             </div>
         `;
-        
-        return quizHTML;
     }
     
     // Render next button
@@ -627,7 +807,7 @@ class QuizUI {
         `;
     }
 
-    // Add this method to the QuizUI class
+    // Enable next button
     enableNextButton() {
         const nextButton = document.getElementById('nextQuestionBtn');
         if (nextButton) {
@@ -689,7 +869,7 @@ class QuizUI {
                 </div>
                 
                 ${results.aiInsights ? `
-                    <div class="explanation-container" style="margin: 30px 0;">
+                    <div class="explanation-container" style="margin: 25px 0;">
                         <div class="explanation-header">
                             <i class="fas fa-robot"></i>
                             <span class="explanation-personality">AI Analysis</span>
@@ -704,7 +884,7 @@ class QuizUI {
                 ` : ''}
                 
                 ${Object.keys(results.categoryPerformance || {}).length > 0 ? `
-                    <div class="explanation-container" style="margin: 30px 0;">
+                    <div class="explanation-container" style="margin: 25px 0;">
                         <div class="explanation-header">
                             <i class="fas fa-chart-pie"></i>
                             <span class="explanation-personality">Category Performance</span>
@@ -734,7 +914,7 @@ class QuizUI {
                     </div>
                 ` : ''}
                 
-                <div style="margin-top: 40px;">
+                <div style="margin-top: 30px;">
                     <button class="btn btn-primary" onclick="restartQuiz()" style="margin-right: 10px;">
                         <i class="fas fa-redo"></i> Try Again
                     </button>
@@ -781,21 +961,22 @@ class QuizUI {
     
     // Show explanation
     showExplanation(explanationHtml) {
-        // Look for explanation container in document
         const explanationContainer = document.getElementById('quizExplanation');
         if (explanationContainer) {
             explanationContainer.innerHTML = explanationHtml;
             explanationContainer.style.display = 'block';
             
-            // Scroll to explanation
-            explanationContainer.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'nearest' 
-            });
+            // Scroll to explanation smoothly
+            setTimeout(() => {
+                explanationContainer.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest' 
+                });
+            }, 100);
         }
     }
     
-   // Show correct/incorrect animation
+    // Show correct/incorrect animation
     showAnswerFeedback(selectedIndex, correctIndex) {
         const options = document.querySelectorAll('.option-button');
         if (!options) return;
