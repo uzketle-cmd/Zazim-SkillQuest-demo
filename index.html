@@ -701,6 +701,33 @@
                             <a href="#" class="view-all" onclick="switchDashboardTab('learning')">View All</a>
                         </div>
                         <div class="module-cards-large">
+                            <!-- Health and Safety Module -->
+                            <div class="module-card-large">
+                                <div class="module-icon-large">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <div class="module-content">
+                                    <h4>Health and Safety</h4>
+                                    <p>Learn workplace safety protocols and emergency response procedures.</p>
+                                    <div class="module-meta">
+                                        <span><i class="far fa-clock"></i> 12 minutes</span>
+                                        <span><i class="fas fa-star"></i> Beginner</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="healthSafetyProgress"></div>
+                                    </div>
+                                    <div class="module-actions">
+                                        <button class="btn btn-accent" onclick="startModule('health-safety')" id="healthSafetyStartBtn">
+                                            <i class="fas fa-play"></i> Start
+                                        </button>
+                                        <button class="btn btn-secondary" onclick="continueModule('health-safety')" id="healthSafetyContinueBtn">
+                                            <i class="fas fa-redo"></i> Continue
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Fire Safety Training Module -->
                             <div class="module-card-large">
                                 <div class="module-icon-large">
                                     <i class="fas fa-fire-extinguisher"></i>
@@ -715,14 +742,18 @@
                                     <div class="progress-bar">
                                         <div class="progress-fill" id="fireSafetyProgress"></div>
                                     </div>
-                                    <button class="btn btn-accent" onclick="startModule('fire-safety')" id="fireSafetyBtn">
-                                        Start
-                                    </button>
-                                    <button class="btn btn-accent" onclick="startQuiz('fire-safety')">
-    <i class="fas fa-play"></i> Start Quiz
-</button>
+                                    <div class="module-actions">
+                                        <button class="btn btn-accent" onclick="startModule('fire-safety')" id="fireSafetyStartBtn">
+                                            <i class="fas fa-play"></i> Start
+                                        </button>
+                                        <button class="btn btn-secondary" onclick="continueModule('fire-safety')" id="fireSafetyContinueBtn">
+                                            <i class="fas fa-redo"></i> Continue
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+
+                            <!-- GDPR Compliance Module -->
                             <div class="module-card-large">
                                 <div class="module-icon-large">
                                     <i class="fas fa-database"></i>
@@ -737,9 +768,14 @@
                                     <div class="progress-bar">
                                         <div class="progress-fill" id="gdprProgress"></div>
                                     </div>
-                                    <button class="btn btn-secondary" onclick="startModule('gdpr')" id="gdprBtn">
-                                        Start
-                                    </button>
+                                    <div class="module-actions">
+                                        <button class="btn btn-accent" onclick="startModule('gdpr')" id="gdprStartBtn">
+                                            <i class="fas fa-play"></i> Start
+                                        </button>
+                                        <button class="btn btn-secondary" onclick="continueModule('gdpr')" id="gdprContinueBtn">
+                                            <i class="fas fa-redo"></i> Continue
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1464,21 +1464,21 @@ function handleNextQuestion() {
     }
 }
 
-// Show quiz results
 async function showQuizResults() {
+    // Calculate results if not already calculated
     if (!quizEngine.quizResults) {
         await quizEngine.calculateFinalResults();
     }
     
-    // Save results
+    // Save results to storage/local database
     quizEngine.saveResults();
     
-    // Update user stats in dashboard
+    // Update user stats in dashboard if logged in
     if (window.currentUser) {
         updateUserAfterQuiz(quizEngine.quizResults);
     }
     
-    // Render results
+    // Render results with modal structure
     quizModal.innerHTML = `
         <div class="modal-content" style="max-width: 900px;">
             <div class="modal-header">
@@ -1530,6 +1530,99 @@ function updateUserAfterQuiz(results) {
         }
     }
 }
+
+// Function to start a module from beginning
+function startModule(moduleId) {
+    console.log(`Starting module: ${moduleId}`);
+    // Reset progress to 0%
+    resetModuleProgress(moduleId);
+    // Load module content
+    loadModuleContent(moduleId, 0); // Start from slide 0
+}
+
+// Function to continue from last saved position
+function continueModule(moduleId) {
+    console.log(`Continuing module: ${moduleId}`);
+    // Get saved progress
+    const progress = getModuleProgress(moduleId);
+    // Load module content from saved position
+    loadModuleContent(moduleId, progress.currentSlide || 0);
+}
+
+// Helper functions
+function getModuleProgress(moduleId) {
+    const savedProgress = localStorage.getItem(`module-${moduleId}-progress`);
+    return savedProgress ? JSON.parse(savedProgress) : { progress: 0, currentSlide: 0 };
+}
+
+function resetModuleProgress(moduleId) {
+    localStorage.setItem(`module-${moduleId}-progress`, JSON.stringify({ progress: 0, currentSlide: 0 }));
+    updateProgressBar(moduleId, 0);
+}
+
+function updateProgressBar(moduleId, percentage) {
+    const progressBar = document.getElementById(`${moduleId}Progress`);
+    if (progressBar) {
+        progressBar.style.width = `${percentage}%`;
+    }
+}
+
+// Function to load module content
+function loadModuleContent(moduleId, slideIndex) {
+    // Hide dashboard and show module content
+    document.querySelector('.dashboard-container').style.display = 'none';
+    
+    // Load module based on moduleId
+    const modules = {
+        'health-safety': {
+            name: 'Health and Safety',
+            slides: ['Slide 1 content...', 'Slide 2 content...', 'Slide 3 content...']
+        },
+        'fire-safety': {
+            name: 'Fire Safety Training',
+            slides: ['Fire safety content...']
+        },
+        'gdpr': {
+            name: 'GDPR Compliance',
+            slides: ['GDPR content...']
+        }
+    };
+    
+    const module = modules[moduleId];
+    if (module) {
+        // Display module content
+        console.log(`Loading ${module.name} from slide ${slideIndex}`);
+        // You would implement your actual module loading logic here
+    }
+}
+
+
+// On dashboard load
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize progress bars
+    initializeModuleProgress('health-safety');
+    initializeModuleProgress('fire-safety');
+    initializeModuleProgress('gdpr');
+});
+
+function initializeModuleProgress(moduleId) {
+    const progress = getModuleProgress(moduleId);
+    updateProgressBar(moduleId, progress.progress || 0);
+    
+    // Enable/disable continue button based on progress
+    const continueBtn = document.getElementById(`${moduleId}ContinueBtn`);
+    if (continueBtn) {
+        continueBtn.disabled = (progress.progress === 0);
+        if (progress.progress === 0) {
+            continueBtn.classList.add('btn-disabled');
+        } else {
+            continueBtn.classList.remove('btn-disabled');
+        }
+    }
+}
+
+
+
 
 // Create quiz modal
 function createQuizModal() {
