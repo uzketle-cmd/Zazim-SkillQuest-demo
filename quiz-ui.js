@@ -43,7 +43,7 @@ class QuizUI {
                 align-items: center;
                 justify-content: center;
                 padding: 20px;
-                overflow: hidden;
+                overflow: auto;
                 animation: modalFadeIn 0.3s ease;
             }
             
@@ -60,6 +60,16 @@ class QuizUI {
                 flex-direction: column;
                 box-shadow: 0 20px 60px rgba(0,0,0,0.3);
                 animation: slideUp 0.4s ease;
+                margin: auto;
+            }
+
+            /* Make entire quiz container scrollable */
+            .quiz-container {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                max-height: 95vh;
+                scroll-behavior: smooth;
             }
             
             /* Quiz Header - Fixed */
@@ -71,7 +81,8 @@ class QuizUI {
                 justify-content: space-between;
                 align-items: center;
                 flex-shrink: 0;
-                position: relative;
+                position: sticky;
+                top: 0;
                 z-index: 10;
             }
             
@@ -146,6 +157,7 @@ class QuizUI {
                 padding: 0;
                 display: flex;
                 flex-direction: column;
+                min-height: 0;
             }
             
             /* Question Container */
@@ -432,6 +444,84 @@ class QuizUI {
                 font-size: 1.6rem;
                 color: #2A4B8C;
                 margin-bottom: 15px;
+            }
+
+            /* For very small screens, adjust margins and padding */
+            @media (max-height: 500px) {
+                #quizModal.modal {
+                    padding: 10px;
+                    align-items: flex-start; /* Align to top on very short screens */
+                }
+                
+                #quizModal .modal-content {
+                    max-height: 98vh;
+                    margin: 10px auto; /* Add margin on top/bottom */
+                }
+                
+                .quiz-header {
+                    padding: 12px 20px;
+                }
+                
+                .question-container {
+                    padding: 15px 20px;
+                }
+                
+                .next-button-container {
+                    padding: 15px 20px;
+                }
+            }
+            
+            /* Additional responsive adjustments */
+            @media (max-width: 768px) {
+                #quizModal.modal {
+                    padding: 10px;
+                    overflow-y: auto;
+                }
+                
+                #quizModal .modal-content {
+                    max-height: 98vh;
+                    margin: 10px auto;
+                }
+                
+                /* Ensure content is not too compressed */
+                .question-text {
+                    min-height: auto;
+                }
+                
+                .options-container {
+                    min-height: auto;
+                }
+            }
+            
+            /* For extremely small height screens */
+            @media (max-height: 400px) {
+                .quiz-header {
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .quiz-stats {
+                    order: 2;
+                    width: 100%;
+                    justify-content: space-between;
+                }
+                
+                .question-meta {
+                    flex-wrap: wrap;
+                    font-size: 0.75rem;
+                }
+                
+                .option-button {
+                    padding: 10px 15px;
+                    min-height: 45px;
+                }
+                
+                .option-letter {
+                    width: 24px;
+                    height: 24px;
+                    font-size: 0.8rem;
+                    margin-right: 10px;
+                }
             }
             
             /* Animations */
